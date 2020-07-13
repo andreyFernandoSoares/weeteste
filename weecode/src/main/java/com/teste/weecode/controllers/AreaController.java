@@ -27,14 +27,14 @@ public class AreaController {
 	@PostMapping(value="/area/id")
 	public String getAreaByName(HttpServletRequest request, Model model) {
 		String id = (String) areaWS.getId(request.getParameter("nome"));
-		model.addAttribute("resp", "Id: "+ id);
+		model.addAttribute("resp", id);
 		return "teste";
 	}
 	
 	@PostMapping(value="/area/nome")
 	public String getAreaById(HttpServletRequest request, Model model) {
 		String nome = areaWS.getNome(request.getParameter("id"));
-		model.addAttribute("resp", "Nome: "+nome);
+		model.addAttribute("resp", nome);
 		return "teste";
 	}
 	

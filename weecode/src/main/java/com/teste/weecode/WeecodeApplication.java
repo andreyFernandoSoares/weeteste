@@ -16,6 +16,7 @@ import com.teste.weecode.ws.DocumentoWS;
 import com.teste.weecode.ws.IndiceWS;
 import com.teste.weecode.ws.RegistroWS;
 import com.teste.weecode.ws.UsuarioWS;
+import com.teste.weecode.ws.WorkFlowWS;
 
 @SpringBootApplication
 @ComponentScan({"com.teste.weecode.controllers"})
@@ -38,6 +39,11 @@ public class WeecodeApplication {
 	@Bean
 	public RegistroWS regWS() {
 		return new RegistroWS();
+	}
+	
+	@Bean
+	public WorkFlowWS wfWS() {
+	    return new WorkFlowWS();
 	}
 	
 	@Bean

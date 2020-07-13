@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -89,7 +88,7 @@ public class DocumentoWS {
 			doc.setIdRegistro(jDoc.optString("idRegistro"));
 			doc.setEndereco(jDoc.optString("endereco"));
 			doc.setIdTemplate(jDoc.optLong("idTemplate"));
-			doc.setBytes(Base64.decodeBase64(jDoc.optString("bytes")));
+			doc.setBytes(jDoc.optString("bytes"));
 			doc.setNomeResponsavelRemocao(jDoc.optString("nomeResponsavelRemocao"));
 			doc.setVersao(jDoc.optString("versao"));
 			doc.setIdUsuario(jDoc.optLong("idUsuario"));

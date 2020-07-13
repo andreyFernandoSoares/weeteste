@@ -34,10 +34,15 @@ public class AreaWS {
 		params.put("nome", nome);
 		String url = "http://cobaia.speedsoftware.com.br:8080/speed/rest/area?nome={nome}";
 		String json = gediDAO.get(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), params);
-		JSONArray jsonArray = new JSONArray(json);
-		Gson gson = new Gson();
-		AreaRow areaRow = gson.fromJson(jsonArray.get(0).toString(), AreaRow.class);
-		return areaRow.getId();
+		
+		if (!"[]".equals(json)) {
+			JSONArray jsonArray = new JSONArray(json);
+			Gson gson = new Gson();
+			AreaRow areaRow = gson.fromJson(jsonArray.get(0).toString(), AreaRow.class);
+			return "ID: "+areaRow.getId();
+		} else {
+			return "Nome invalido! Está area não existe.";
+		}
 	}
 	
 	public String getNome(String id) {
@@ -45,9 +50,14 @@ public class AreaWS {
 		params.put("id", id);
 		String url = "http://cobaia.speedsoftware.com.br:8080/speed/rest/area/{id}/nome";
 		String nome = gediDAO.get(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), params);
-		AreaRow areaRow = new AreaRow();
-		areaRow.setNome(nome);
-		return areaRow.getNome();
+		
+		if (nome != null) {
+			AreaRow areaRow = new AreaRow();
+			areaRow.setNome(nome);
+			return "Nome: "+areaRow.getNome();
+		} else {
+			return "Id invalido! Está area não existe.";
+		}
 	}
 	
 	public String criarArea(String nome) {

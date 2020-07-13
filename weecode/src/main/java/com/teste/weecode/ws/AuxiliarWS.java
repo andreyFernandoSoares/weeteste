@@ -3,7 +3,6 @@ package com.teste.weecode.ws;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.tomcat.util.codec.binary.Base64;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -46,7 +45,7 @@ public class AuxiliarWS {
 		
 		for (JSONObject jImg : listaJson) {
 			ImagemRow img = new ImagemRow();
-			img.setImagem(Base64.decodeBase64(jImg.optString("imagem")));
+			img.setImagem(jImg.optString("imagem"));
 			listaImagens.add(img);
 		}
 		

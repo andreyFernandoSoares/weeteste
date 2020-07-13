@@ -12,7 +12,7 @@ public class DocumentoRow {
 	private Long idTemplate;
 	private Long idUsuario;
 	private boolean removido;
-	private byte[] bytes;
+	private String bytes;
 	private String nomeResponsavelRemocao;
 	private Long responsavelRemocao;
 	private Date dataRemocao;
@@ -163,11 +163,11 @@ public class DocumentoRow {
 		this.listaIndice = listaIndice;
 	}
 
-	public byte[] getBytes() {
+	public String getBytes() {
 		return bytes;
 	}
 
-	public void setBytes(byte[] bytes) {
+	public void setBytes(String bytes) {
 		this.bytes = bytes;
 	}
 }

@@ -11,6 +11,7 @@
      <h6 class="hello-title">---------------------------</h6>  
    	 <h6 class="hello-title">Id Doc: ${doc.id}</h6>   
    	 <h6 class="hello-title">Id da Area: ${doc.idArea}</h6>  
+     <img src="data:image/jpg;base64,${doc.bytes}" alt="No image">
    </c:forEach>
 </body>
 </html>
