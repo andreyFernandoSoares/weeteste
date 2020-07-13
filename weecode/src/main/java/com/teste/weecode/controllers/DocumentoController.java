@@ -20,7 +20,7 @@ public class DocumentoController {
 	DocumentoWS docWS;
 
 	@PostMapping(value="/documento")
-    public String indice(Model model) {
+    public String documento(Model model) {
         return "documento";
     }
 	

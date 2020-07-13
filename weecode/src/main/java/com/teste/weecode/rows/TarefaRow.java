@@ -22,7 +22,7 @@ public class TarefaRow {
 	private String nomeAtor;
 	private String farol;
 	private List<String> mensagens;
-	private String mensagem;
+	private List<String> mensagem;
 	
 	public String getNomeTarefa() {
 		return nomeTarefa;
@@ -160,11 +160,11 @@ public class TarefaRow {
 		this.mensagens = mensagens;
 	}
 	
-	public String getMensagem() {
+	public List<String> getMensagem() {
 		return mensagem;
 	}
 	
-	public void setMensagem(String mensagem) {
+	public void setMensagem(List<String> mensagem) {
 		this.mensagem = mensagem;
 	}
 }

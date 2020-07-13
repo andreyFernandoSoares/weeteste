@@ -20,7 +20,7 @@ public class RegistroController {
 	RegistroWS regWS;
 	
 	@PostMapping(value="/registro")
-    public String indice(Model model) {
+    public String registro(Model model) {
         return "registro";
     }
 	
