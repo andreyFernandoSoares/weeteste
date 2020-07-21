@@ -8,7 +8,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
-import com.teste.weecode.dao.GediDAO;
+import com.teste.weecode.dao.GedDAO;
 import com.teste.weecode.rows.RegistroRow;
 import com.teste.weecode.utils.HttpUtils;
 import com.teste.weecode.utils.JsonUtils;
@@ -16,7 +16,7 @@ import com.teste.weecode.utils.JsonUtils;
 public class RegistroWS {
 	
 	@Autowired
-	GediDAO gediDAO;
+	GedDAO gedDAO;
 	
 	@Autowired
 	HttpUtils httpUtils;
@@ -37,7 +37,7 @@ public class RegistroWS {
 		params.put("docs", registroId);
 		params.put("bytes", bytes);
 		
-		String json = gediDAO.get(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), params);
+		String json = gedDAO.get(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), params);
 		List<JSONObject> listaJson = jsonUtils.getListaJson(json, null);
 		return listaRegistro(listaJson);
 	}
@@ -50,7 +50,7 @@ public class RegistroWS {
 		params.put("docs", docs);
 		params.put("bytes", bytes);
 		
-		String json = gediDAO.get(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), params);
+		String json = gedDAO.get(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), params);
 		List<JSONObject> listaJson = jsonUtils.getListaJson(json, null);
 		return listaRegistro(listaJson);
 	}
@@ -59,7 +59,7 @@ public class RegistroWS {
 		String url = "http://cobaia.speedsoftware.com.br:8080/speed/rest/registro/{registroId}";
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("registroId", registroId);
-		gediDAO.delete(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), params);
+		gedDAO.delete(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), params);
 	}
 	
 	public List<RegistroRow> listaRegistro(List<JSONObject>  listaJson){

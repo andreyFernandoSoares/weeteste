@@ -8,7 +8,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
-import com.teste.weecode.dao.GediDAO;
+import com.teste.weecode.dao.GedDAO;
 import com.teste.weecode.rows.AreaRow;
 import com.teste.weecode.rows.IndiceRow;
 import com.teste.weecode.utils.HttpUtils;
@@ -17,7 +17,7 @@ import com.teste.weecode.utils.JsonUtils;
 public class IndiceWS {
 	
 	@Autowired
-	GediDAO gediDAO;
+	GedDAO gedDAO;
 	
 	@Autowired
 	JsonUtils jsonUtils;
@@ -37,7 +37,7 @@ public class IndiceWS {
 		params.put("areaId", areaId);
 		params.put("identificador", identificador);
 		params.put("localizacao", localizacao);
-		String json = gediDAO.get(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), params);
+		String json = gedDAO.get(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), params);
 		List<JSONObject> listaJson = jsonUtils.getListaJson(json, null);
 		return areaWS.getListaArea(listaJson);
 	}
@@ -47,7 +47,7 @@ public class IndiceWS {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("identificador", identificador);
 		params.put("usuarioId", usuarioId);
-		String json = gediDAO.get(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), params);
+		String json = gedDAO.get(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), params);
 		List<JSONObject> listaJson = jsonUtils.getListaJson(json, null);
 		return areaWS.getListaArea(listaJson);
 	}

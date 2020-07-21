@@ -8,7 +8,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
-import com.teste.weecode.dao.GediDAO;
+import com.teste.weecode.dao.GedDAO;
 import com.teste.weecode.rows.TarefaRow;
 import com.teste.weecode.utils.DateUtils;
 import com.teste.weecode.utils.HttpUtils;
@@ -17,7 +17,7 @@ import com.teste.weecode.utils.JsonUtils;
 public class WorkFlowWS {
 	
 	@Autowired
-	GediDAO gediDAO;
+	GedDAO gedDAO;
 	
 	@Autowired
 	JsonUtils jsonUtils;
@@ -33,7 +33,7 @@ public class WorkFlowWS {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("id", id);
 		
-		String json = gediDAO.get(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), params);
+		String json = gedDAO.get(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), params);
 		List<JSONObject> listaJson = jsonUtils.getListaJson(json, null);
 		return getListaTarefa(listaJson);
 	}

@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
 import com.google.gson.Gson;
-import com.teste.weecode.dao.GediDAO;
+import com.teste.weecode.dao.GedDAO;
 import com.teste.weecode.rows.AreaRow;
 import com.teste.weecode.utils.HttpUtils;
 import com.teste.weecode.utils.JsonUtils;
@@ -18,7 +18,7 @@ import com.teste.weecode.utils.JsonUtils;
 public class AreaWS {
 	
 	@Autowired
-	GediDAO gediDAO;
+	GedDAO gedDAO;
 	
 	@Autowired
 	HttpUtils httpUtils;
@@ -33,7 +33,7 @@ public class AreaWS {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("nome", nome);
 		String url = "http://cobaia.speedsoftware.com.br:8080/speed/rest/area?nome={nome}";
-		String json = gediDAO.get(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), params);
+		String json = gedDAO.get(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), params);
 		
 		if (!"[]".equals(json)) {
 			JSONArray jsonArray = new JSONArray(json);
@@ -49,7 +49,7 @@ public class AreaWS {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("id", id);
 		String url = "http://cobaia.speedsoftware.com.br:8080/speed/rest/area/{id}/nome";
-		String nome = gediDAO.get(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), params);
+		String nome = gedDAO.get(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), params);
 		
 		if (nome != null) {
 			AreaRow areaRow = new AreaRow();
@@ -62,7 +62,7 @@ public class AreaWS {
 	
 	public String criarArea(String nome) {
 		String url = "http://cobaia.speedsoftware.com.br:8080/speed/rest/area";
-		String id = gediDAO.post(url, httpUtils.entidadeHttp(nome, MediaType.APPLICATION_JSON));
+		String id = gedDAO.post(url, httpUtils.entidadeHttp(nome, MediaType.APPLICATION_JSON));
 		AreaRow areaRow = new AreaRow();
 		areaRow.setId(id);
 		return areaRow.getId();
@@ -73,7 +73,7 @@ public class AreaWS {
 		params.put("id", id);
 		params.put("definitivo", definitivo);
 		String url = "http://cobaia.speedsoftware.com.br:8080/speed/rest/area/{id}?definitivo={definitivo}";
-		Integer resposta = gediDAO.delete(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), params);
+		Integer resposta = gedDAO.delete(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), params);
 		
 		if (resposta == 200) 
 			return "Area deletada com sucesso";
@@ -86,7 +86,7 @@ public class AreaWS {
 		params.put("id", id);
 		params.put("idPai", idPai);
 		String url = "http://cobaia.speedsoftware.com.br:8080/speed/rest/area/{id}";
-		Integer resposta = gediDAO.put(url, httpUtils.entidadeHttp((String) params.get("idPai"), MediaType.TEXT_PLAIN), params);
+		Integer resposta = gedDAO.put(url, httpUtils.entidadeHttp((String) params.get("idPai"), MediaType.TEXT_PLAIN), params);
 		
 		if (resposta == 200) 
 			return "Area movida com sucesso";
@@ -98,14 +98,14 @@ public class AreaWS {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("id", id);
 		String url = "http://cobaia.speedsoftware.com.br:8080/speed/rest/area/{id}/documentos";
-		return gediDAO.get(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), params);
+		return gedDAO.get(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), params);
 	}
 	
 	public String getPaiArea(String id) {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("id", id);
 		String url = "http://cobaia.speedsoftware.com.br:8080/speed/rest/area/{id}/pai";
-		String areaPai = gediDAO.get(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), params);
+		String areaPai = gedDAO.get(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), params);
 		AreaRow arearow = new AreaRow();
 		arearow.setNomePai(areaPai);
 		return arearow.getNomePai();
@@ -113,7 +113,7 @@ public class AreaWS {
 	
 	public List<AreaRow> listaTemporalidade(){
 		String url = "http://cobaia.speedsoftware.com.br:8080/speed/rest/area/temporalidade";
-		String json = gediDAO.get(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), new HashMap<String, Object>());
+		String json = gedDAO.get(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), new HashMap<String, Object>());
 		List<JSONObject> listaJson = jsonUtils.getListaJson(json, null);
 		return getListaArea(listaJson);
 	}

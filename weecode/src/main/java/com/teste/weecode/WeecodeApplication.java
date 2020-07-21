@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.client.RestTemplate;
 
-import com.teste.weecode.dao.GediDAO;
+import com.teste.weecode.dao.GedDAO;
 import com.teste.weecode.utils.DateUtils;
 import com.teste.weecode.utils.HttpUtils;
 import com.teste.weecode.utils.JsonUtils;
@@ -82,7 +82,7 @@ public class WeecodeApplication {
 	}
 	
 	@Bean
-	public GediDAO gediDAO() {
-	    return new GediDAO();
+	public GedDAO gedDAO() {
+	    return new GedDAO();
 	}
 }

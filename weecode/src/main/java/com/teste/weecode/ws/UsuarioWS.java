@@ -8,7 +8,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
-import com.teste.weecode.dao.GediDAO;
+import com.teste.weecode.dao.GedDAO;
 import com.teste.weecode.rows.UsuarioRow;
 import com.teste.weecode.utils.HttpUtils;
 import com.teste.weecode.utils.JsonUtils;
@@ -16,7 +16,7 @@ import com.teste.weecode.utils.JsonUtils;
 public class UsuarioWS {
 	
 	@Autowired
-	GediDAO gediDAO;
+	GedDAO gedDAO;
 	
 	@Autowired
 	HttpUtils httpUtils;
@@ -28,14 +28,14 @@ public class UsuarioWS {
 		HashMap<String, Object> params = new HashMap<String, Object>();
 		params.put("id", id);
 		String url = "http://cobaia.speedsoftware.com.br:8080/speed/rest/usuario/token?usuario={id}";
-		String token = gediDAO.get(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), params);
+		String token = gedDAO.get(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), params);
 		UsuarioRow userRow = new UsuarioRow(token);
 		return userRow.getToken();
 	}
 	
 	public List<UsuarioRow> usuarioLogado(){
 		String url = "http://cobaia.speedsoftware.com.br:8080/speed/rest/usuario";
-		String json = gediDAO.get(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), new HashMap<String, Object>());
+		String json = gedDAO.get(url, httpUtils.entidadeHttp("body", MediaType.APPLICATION_JSON), new HashMap<String, Object>());
 		List<JSONObject> listaJson = jsonUtils.getListaJson(json, null);
 		List<UsuarioRow> listaUsuario = new ArrayList<>();
 		
